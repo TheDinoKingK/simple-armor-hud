@@ -80,9 +80,9 @@ public class armorPlacement {
         }
 
         if ( minecraft.player.isCreative() ) {
-            armorAdjustment = 16 + healthDisplacement;
+            armorAdjustment = 16;
         } else if ( config.DISABLE_ARMOR_BAR ) {
-            armorAdjustment = 10;
+            armorAdjustment = 10 - healthDisplacement;
         }
 
         return armorAdjustment;
@@ -94,7 +94,7 @@ public class armorPlacement {
             armorAdjustment = -10;
         }
 
-        if ( minecraft.player.isCreative() ) {
+        if ( minecraft.player.isCreative() && ((config.position != config.Position.HOTBAR_LEFT) && (config.position != config.Position.HOTBAR_RIGHT))) {
             armorAdjustment = 16;
         }
 
