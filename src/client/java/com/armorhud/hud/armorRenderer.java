@@ -5,6 +5,7 @@ import com.armorhud.armorHud;
 import com.armorhud.config.config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
@@ -49,6 +50,7 @@ public class armorRenderer {
 
                 x -= armorWidth;
                 renderArmorPiece(graphics, minecraft, minecraft.player, x, armorHeight, armor);
+                renderNumericDura(graphics, minecraft, minecraft.player, x, armorHeight, armor);
             }
         } else {
             if ( config.TRIM_EMPTY_SLOTS ) {
@@ -60,6 +62,7 @@ public class armorRenderer {
 
                 x -= armorWidth;
                 renderArmorPiece(graphics, minecraft, minecraft.player, x, armorHeight, armor);
+                renderNumericDura(graphics, minecraft, minecraft.player, x, armorHeight, armor);
             }
         }
     }
@@ -73,6 +76,23 @@ public class armorRenderer {
         graphics.item(player, stack, 0, 0, 1);
 
         graphics.itemDecorations(minecraft.font, stack, 0,0);
+        graphics.pose().popMatrix();
+    }
+    public static void renderNumericDura(GuiGraphicsExtractor graphics, Minecraft minecraft, Player player, float x, float y, ItemStack stack) {
+        if ( stack.isEmpty() ) return;
+
+        int armorDura = stack.getMaxDamage() - stack.getDamageValue();
+        int txtOffset = 5; // centers text in 1s 10s 100s.
+        if(armorDura > 9) {
+            txtOffset = 2;
+        }
+        if (armorDura > 99) {
+            txtOffset = -1;
+        }
+        graphics.pose().pushMatrix();
+        graphics.pose().translate(x, y);
+
+        graphics.text(minecraft.font, String.valueOf(armorDura), txtOffset, -8, ARGB.opaque(stack.getBarColor()), true);
         graphics.pose().popMatrix();
     }
 }
