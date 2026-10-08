@@ -42,6 +42,12 @@ public class armorHud implements ClientModInitializer {
                 config.ARMOR_HUD = !config.ARMOR_HUD;
             }
         });
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (keyBindings.numericDuraToggle.consumeClick()) {
+                config.NUMERIC_DURABILITY = !config.NUMERIC_DURABILITY;
+            }
+        });
+
     }
 
     public static ArmorAccessor getArmorAccessor() {

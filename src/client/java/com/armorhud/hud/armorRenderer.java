@@ -33,7 +33,7 @@ public class armorRenderer {
         }
 
 //      Magical starting positions
-        float hungerX = scaledWidth / 2f + startXPosition + ((config.numericDurability != config.NumDura.OFF) ? 14.5f : 0);
+        float hungerX = scaledWidth / 2f + startXPosition;
         float x = hungerX + hungerWidth - (7 * emptyArmorSlots) + 2 - (armorWidth * 2);
 
 //      Armor x position calculations
@@ -42,15 +42,22 @@ public class armorRenderer {
                 x -= (float) (( (float) armorWidth / 2 ) + 0.5);
             }
 
-            x += armorWidth + ((config.numericDurability != config.NumDura.OFF) ? -5 : 0);
+            if(config.NUMERIC_DURABILITY) {
+                x += 5;
+            }
+            x += armorWidth;
             armorPieces = armorPieces.reversed();
 
             for ( ItemStack armor : armorPieces ) {
                 if ( config.TRIM_EMPTY_SLOTS && armor.isEmpty() ) continue;
 
+                if(config.NUMERIC_DURABILITY) {
+                    x -= 5;
+                }
+
                 x -= armorWidth;
                 renderArmorPiece(graphics, minecraft, minecraft.player, x, armorHeight, armor);
-                if((config.numericDurability != config.NumDura.OFF)) {
+                if(config.NUMERIC_DURABILITY) {
                     renderNumericDura(graphics, minecraft, x, armorHeight, armor);
                 }
             }
@@ -62,9 +69,13 @@ public class armorRenderer {
             for ( ItemStack armor : armorPieces ) {
                 if (config.TRIM_EMPTY_SLOTS && armor.isEmpty()) continue;
 
-                x -= armorWidth + ((config.numericDurability != config.NumDura.OFF) ? 5 : 0);
+                if(config.NUMERIC_DURABILITY) {
+                    x -= 5;
+                }
+
+                x -= armorWidth;
                 renderArmorPiece(graphics, minecraft, minecraft.player, x, armorHeight, armor);
-                if((config.numericDurability != config.NumDura.OFF)) {
+                if((config.NUMERIC_DURABILITY)) {
                     renderNumericDura(graphics, minecraft, x, armorHeight, armor);
                 }
             }
@@ -79,9 +90,7 @@ public class armorRenderer {
 
         graphics.item(player, stack, 0, 0, 1);
 
-        if(!config.DISABLE_DURABILITY_BAR) {
-            graphics.itemDecorations(minecraft.font, stack, 0,0);
-        }
+        graphics.itemDecorations(minecraft.font, stack, 0,0);
         graphics.pose().popMatrix();
     }
     public static void renderNumericDura(GuiGraphicsExtractor graphics, Minecraft minecraft, float x, float y, ItemStack stack) {
@@ -89,18 +98,17 @@ public class armorRenderer {
 
         int armorDura = stack.getMaxDamage() - stack.getDamageValue();
         int armorDuraPercent = (int) Math.floor(((double) armorDura / stack.getMaxDamage()) * 100);
+        if (armorDuraPercent == 100) {
+            return;
+        }
         String armorText = String.valueOf(armorDura);
-        int txtOffset = 5;
-        if (config.numericDurability == config.NumDura.PERCENT) {
+        int txtOffset;
+        if (config.numericFormat == config.NumFormat.PERCENT) {
             armorText = armorDuraPercent + "%";
-            txtOffset = 7 - (3*(String.valueOf(armorDuraPercent).length()-1));
+            txtOffset = 2 - (3*(String.valueOf(armorDuraPercent).length()-1));
         } else {
-            txtOffset -= (3*(String.valueOf(armorDura).length()-1));
+            txtOffset = 5 - (3*(String.valueOf(armorDura).length()-1));
         }
-        if (armorDuraPercent == 0) {
-            armorText="";
-        }
-
 
         graphics.pose().pushMatrix();
         graphics.pose().translate(x, y);

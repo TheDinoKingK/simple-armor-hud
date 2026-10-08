@@ -19,9 +19,8 @@ public class config {
     public static Position position = Position.FOODBAR;
     public static boolean RTL = false;
     public static boolean TRIM_EMPTY_SLOTS = false; // toggles trimming space between empty armor slots
-    public static NumDura numericDurability = NumDura.OFF; // toggles numeric display of all armor pieces
-    public static boolean DISABLE_DURABILITY_BAR = false; // toggles armor durability bar
-    public static boolean NUMERIC_PERCENT = false; // use percentage instead of raw value
+    public static NumFormat numericFormat = NumFormat.NUM; // toggles numeric display of all armor pieces
+    public static boolean NUMERIC_DURABILITY = false; // use percentage instead of raw value
 
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("armorhud.properties");
 
@@ -41,13 +40,12 @@ public class config {
         }
     }
 
-    public enum NumDura {
-        OFF("config.numericdurability.off"),
-        NUM("config.numericdurability.num"),
-        PERCENT("config.numericdurability.percent");
+    public enum NumFormat {
+        NUM("config.numericformat.num"),
+        PERCENT("config.numericformat.percent");
 
         private final String key;
-        NumDura(String key) {
+        NumFormat(String key) {
             this.key = key;
         }
 
@@ -64,9 +62,8 @@ public class config {
         properties.setProperty("trim_empty_slots", Boolean.toString(TRIM_EMPTY_SLOTS));
         properties.setProperty("better_mount_hud", Boolean.toString(BETTER_MOUNT_HUD));
         properties.setProperty("double_hotbar", Boolean.toString(DOUBLE_HOTBAR));
-        properties.setProperty("numericdurability", numericDurability.name());
-        properties.setProperty("disable_durability_bar", Boolean.toString(DISABLE_DURABILITY_BAR));
-        properties.setProperty("numeric_percent", Boolean.toString(NUMERIC_PERCENT));
+        properties.setProperty("numeric_durability", Boolean.toString(NUMERIC_DURABILITY));
+        properties.setProperty("numeric_format", numericFormat.name());
     }
 
     public void read(Properties properties) {
@@ -77,8 +74,8 @@ public class config {
         TRIM_EMPTY_SLOTS = Boolean.parseBoolean(properties.getProperty("trim_empty_slots", "false"));
         BETTER_MOUNT_HUD =  Boolean.parseBoolean(properties.getProperty("better_mount_hud", "false"));
         DOUBLE_HOTBAR =  Boolean.parseBoolean(properties.getProperty("double_hotbar", "false"));
-        DISABLE_DURABILITY_BAR = Boolean.parseBoolean(properties.getProperty("disable_durability_bar", "false"));
-        NUMERIC_PERCENT = Boolean.parseBoolean(properties.getProperty("numeric_percent", "false"));
+        NUMERIC_DURABILITY = Boolean.parseBoolean(properties.getProperty("numeric_durability", "false"));
+        numericFormat = NumFormat.valueOf(properties.getProperty("numeric_format", "NUM"));
     }
 
     public static void save() {

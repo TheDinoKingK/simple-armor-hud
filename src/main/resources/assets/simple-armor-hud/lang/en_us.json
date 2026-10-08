@@ -1,5 +1,6 @@
 {
   "key.armorhud.armorvisible": "Toggle armor hud on/off",
+  "key.armorhud.numericduravisible": "Toggle advanced durability on/off",
   "key.category.simple-armor-hud.armorhud.toggles": "Simple armor hud",
 
   "config.doublehotbar": "Double Hotbar",
@@ -11,12 +12,11 @@
   "config.righttoleft": "Right to left display",
   "config.trimemptyslots": "Trim Empty Slots",
   "config.disabledurabilitybar": "Disable Durability Bar",
+  "config.numericdurability": "Advanced Durability",
 
-  "config.numericdurability": "Show Durability",
-  "config.numericdurability.off": "OFF",
-  "config.numericdurability.num": "Numeric",
-  "config.numericdurability.percent": "Percentage",
-
+  "config.numericformat": "Format",
+  "config.numericformat.num": "Numeric",
+  "config.numericformat.percent": "Percentage",
 
   "config.armorposition": "Position",
   "config.armorposition.foodbar": "Above Foodbar",
@@ -27,7 +27,7 @@
   "config.header.general": "General",
   "config.header.compatibility": "Compatibility",
   "config.header.display": "Display",
-  "config.header.numericdisplay": "Numeric Durability Display",
+  "config.header.numericdisplay": "Advanced Durability",
 
   "config.title": "Simple armor hud config screen",
   "config.done": "Done"

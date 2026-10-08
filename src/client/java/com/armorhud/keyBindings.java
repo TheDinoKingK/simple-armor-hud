@@ -8,6 +8,7 @@ import net.minecraft.resources.Identifier;
 public class keyBindings {
 
     public static KeyMapping armorHudToggle;
+    public static KeyMapping numericDuraToggle;
 
     public static void registerKeys() {
         final KeyMapping.Category category = KeyMapping.Category.register(Identifier.fromNamespaceAndPath("simple-armor-hud", "armorhud.toggles"));
@@ -15,6 +16,11 @@ public class keyBindings {
             "key.armorhud.armorvisible",
             InputConstants.UNKNOWN.getValue(),
             category
+        ));
+        numericDuraToggle = KeyMappingHelper.registerKeyMapping(new KeyMapping(
+                "key.armorhud.numericduravisible",
+                InputConstants.UNKNOWN.getValue(),
+                category
         ));
     }
 

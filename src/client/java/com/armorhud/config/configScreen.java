@@ -30,13 +30,13 @@ public class configScreen extends OptionsSubScreen {
                 value -> config.position = value
         );
 
-        OptionInstance<config.NumDura> numericDurabilityOptions = new OptionInstance<>(
-                "config.numericdurability",
+        OptionInstance<config.NumFormat> numericFormatOptions = new OptionInstance<>(
+                "config.numericformat",
                 OptionInstance.noTooltip(),
                 (component, value) -> value.getDisplayName(),
-                new OptionInstance.Enum<>(java.util.List.of(config.NumDura.values()), null),
-                config.numericDurability,
-                value -> config.numericDurability = value
+                new OptionInstance.Enum<>(java.util.List.of(config.NumFormat.values()), null),
+                config.numericFormat,
+                value -> config.numericFormat = value
         );
 
         this.list.addHeader(Component.translatable("config.header.general"));
@@ -50,13 +50,12 @@ public class configScreen extends OptionsSubScreen {
                 armorPositionOptions,
                 OptionInstance.createBoolean("config.righttoleft", config.RTL, v -> config.RTL = v),
                 OptionInstance.createBoolean("config.trimemptyslots", config.TRIM_EMPTY_SLOTS, v -> config.TRIM_EMPTY_SLOTS = v),
-                numericDurabilityOptions,
-                OptionInstance.createBoolean("config.disabledurabilitybar", config.DISABLE_DURABILITY_BAR, v -> config.DISABLE_DURABILITY_BAR = v)
+                OptionInstance.createBoolean("config.numericdurability", config.NUMERIC_DURABILITY, v -> config.NUMERIC_DURABILITY = v)
         );
 
         this.list.addHeader(Component.translatable("config.header.numericdisplay"));
         this.list.addSmall(
-                OptionInstance.createBoolean("config.numericpercent", config.NUMERIC_PERCENT, v -> config.NUMERIC_PERCENT = v)
+                numericFormatOptions
         );
         this.list.addHeader(Component.translatable("config.header.compatibility"));
         this.list.addSmall(
