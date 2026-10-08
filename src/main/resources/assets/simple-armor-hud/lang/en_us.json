@@ -10,6 +10,13 @@
 
   "config.righttoleft": "Right to left display",
   "config.trimemptyslots": "Trim Empty Slots",
+  "config.disabledurabilitybar": "Disable Durability Bar",
+
+  "config.numericdurability": "Show Durability",
+  "config.numericdurability.off": "OFF",
+  "config.numericdurability.num": "Numeric",
+  "config.numericdurability.percent": "Percentage",
+
 
   "config.armorposition": "Position",
   "config.armorposition.foodbar": "Above Foodbar",
@@ -20,6 +27,7 @@
   "config.header.general": "General",
   "config.header.compatibility": "Compatibility",
   "config.header.display": "Display",
+  "config.header.numericdisplay": "Numeric Durability Display",
 
   "config.title": "Simple armor hud config screen",
   "config.done": "Done"

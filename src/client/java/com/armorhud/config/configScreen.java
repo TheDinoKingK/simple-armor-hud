@@ -30,6 +30,15 @@ public class configScreen extends OptionsSubScreen {
                 value -> config.position = value
         );
 
+        OptionInstance<config.NumDura> numericDurabilityOptions = new OptionInstance<>(
+                "config.numericdurability",
+                OptionInstance.noTooltip(),
+                (component, value) -> value.getDisplayName(),
+                new OptionInstance.Enum<>(java.util.List.of(config.NumDura.values()), null),
+                config.numericDurability,
+                value -> config.numericDurability = value
+        );
+
         this.list.addHeader(Component.translatable("config.header.general"));
         this.list.addSmall(
                 OptionInstance.createBoolean("config.armorvisible", config.ARMOR_HUD, v -> config.ARMOR_HUD = v),
@@ -40,9 +49,15 @@ public class configScreen extends OptionsSubScreen {
         this.list.addSmall(
                 armorPositionOptions,
                 OptionInstance.createBoolean("config.righttoleft", config.RTL, v -> config.RTL = v),
-                OptionInstance.createBoolean("config.trimemptyslots", config.TRIM_EMPTY_SLOTS, v -> config.TRIM_EMPTY_SLOTS = v)
+                OptionInstance.createBoolean("config.trimemptyslots", config.TRIM_EMPTY_SLOTS, v -> config.TRIM_EMPTY_SLOTS = v),
+                numericDurabilityOptions,
+                OptionInstance.createBoolean("config.disabledurabilitybar", config.DISABLE_DURABILITY_BAR, v -> config.DISABLE_DURABILITY_BAR = v)
         );
 
+        this.list.addHeader(Component.translatable("config.header.numericdisplay"));
+        this.list.addSmall(
+                OptionInstance.createBoolean("config.numericpercent", config.NUMERIC_PERCENT, v -> config.NUMERIC_PERCENT = v)
+        );
         this.list.addHeader(Component.translatable("config.header.compatibility"));
         this.list.addSmall(
                 OptionInstance.createBoolean("config.doublehotbar", config.DOUBLE_HOTBAR, v -> config.DOUBLE_HOTBAR = v),
