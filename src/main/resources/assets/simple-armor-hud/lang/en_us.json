@@ -11,7 +11,6 @@
 
   "config.righttoleft": "Right to left display",
   "config.trimemptyslots": "Trim Empty Slots",
-  "config.disabledurabilitybar": "Disable Durability Bar",
   "config.numericdurability": "Advanced Durability",
 
   "config.numericformat": "Format",
@@ -27,7 +26,6 @@
   "config.header.general": "General",
   "config.header.compatibility": "Compatibility",
   "config.header.display": "Display",
-  "config.header.numericdisplay": "Advanced Durability",
 
   "config.title": "Simple armor hud config screen",
   "config.done": "Done"

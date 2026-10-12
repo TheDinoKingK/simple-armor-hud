@@ -50,13 +50,10 @@ public class configScreen extends OptionsSubScreen {
                 armorPositionOptions,
                 OptionInstance.createBoolean("config.righttoleft", config.RTL, v -> config.RTL = v),
                 OptionInstance.createBoolean("config.trimemptyslots", config.TRIM_EMPTY_SLOTS, v -> config.TRIM_EMPTY_SLOTS = v),
-                OptionInstance.createBoolean("config.numericdurability", config.NUMERIC_DURABILITY, v -> config.NUMERIC_DURABILITY = v)
-        );
-
-        this.list.addHeader(Component.translatable("config.header.numericdisplay"));
-        this.list.addSmall(
+                OptionInstance.createBoolean("config.numericdurability", config.NUMERIC_DURABILITY, v -> config.NUMERIC_DURABILITY = v),
                 numericFormatOptions
         );
+
         this.list.addHeader(Component.translatable("config.header.compatibility"));
         this.list.addSmall(
                 OptionInstance.createBoolean("config.doublehotbar", config.DOUBLE_HOTBAR, v -> config.DOUBLE_HOTBAR = v),
